@@ -17,7 +17,7 @@ modulation_tx = bpsk
 modulation_rx = bpsk
 
 # connect ethernet, set frequency, run radio
-sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1\
+sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;\
 cd dragonradio;\
 ./dragonradio python/standalone-radio.py -i 1 -f 1.312e9 --log-iq -m bpsk' 
 #sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh'   
