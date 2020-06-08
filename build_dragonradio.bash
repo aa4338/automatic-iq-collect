@@ -21,7 +21,7 @@ echo $gn_rx_ip
 # sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;yes | ./build.sh -j5' 
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh -j5'       
 
-tmux
+#tmux
 
 # creates and goes to a window on the right
 tmux splitw -h -p 35
