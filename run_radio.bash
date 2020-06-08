@@ -11,3 +11,12 @@ gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
 echo $gn_tx_ip
 echo $gn_rx_ip
+
+# set the modulations you want
+modulation_tx = bpsk
+modulation_rx = bpsk
+
+# ssh into radio, set frequency, run on frequency
+
+sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'FREQ=1.3$(gn_rx)e9;cd dragonradio;cd python;echo $FREQ' 
+#sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh'   
