@@ -34,6 +34,8 @@ sleep .5
 echo "......"
 sleep .5
 echo "......."
+gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
+gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
 
 # finding the ip of them
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
@@ -46,7 +48,7 @@ tmux kill-session -a
 
 # RX first
 tmux new -d -s start_rx
-tmux send-keys -t start_rx "gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003" C-m
+#tmux send-keys -t start_rx "gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003" C-m
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t start_rx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_rx "cd dragonradio" C-m
@@ -54,7 +56,7 @@ tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3
 
 # TX
 tmux new -d -s start_tx
-tmux send-keys -t start_tx "gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003" C-m
+#tmux send-keys -t start_tx "gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003" C-m
 tmux send-keys -t start_tx "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip" C-m
 tmux send-keys -t start_tx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_tx "cd dragonradio" C-m
