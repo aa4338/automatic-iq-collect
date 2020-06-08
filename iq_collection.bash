@@ -5,7 +5,7 @@
 
 # defining grid nodes
 gn_tx=grid10
-gn_rx=grid11
+gn_rx=grid12
 
 # starting up respective containers
 gridcli -gn $gn_tx --start -i channel-data-radio-20191003
