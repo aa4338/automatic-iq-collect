@@ -50,8 +50,9 @@ tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 
 #tmux attach -t iperf_rx
 
-
+sleep 2
 scp root@$gn_rx_ip:/dragonradio/logs/node-001/radio.h5 .
+sleep 2
 sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 
