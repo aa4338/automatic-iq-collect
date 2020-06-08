@@ -29,9 +29,9 @@ cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq
 
 tmux new -s "remote_rx" -d
 tmux send-keys -t "remote_rx" "$run_rx" C-m
-tmux kill-ses -t remote
+#tmux kill-ses -t remote
 
 tmux new -s "remote_tx" -d
 tmux send-keys -t "remote_tx" "$run_rx" C-m
-tmux kill-ses -t remote
+#tmux kill-ses -t remote
 #tmux attach -t "remote" -d
