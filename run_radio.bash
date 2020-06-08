@@ -27,11 +27,11 @@ run_tx="sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;\
 cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk'"
 
 
-tmux new -s "remote" -d
-tmux send-keys -t "remote" "$run_rx" C-m
+tmux new -s "remote_rx" -d
+tmux send-keys -t "remote_rx" "$run_rx" C-m
 tmux kill-ses -t remote
 
-tmux new -s "remote" -d
-tmux send-keys -t "remote" "$run_rx" C-m
+tmux new -s "remote_tx" -d
+tmux send-keys -t "remote_tx" "$run_rx" C-m
 tmux kill-ses -t remote
 #tmux attach -t "remote" -d
