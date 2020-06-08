@@ -18,5 +18,5 @@ gn_rx_ip=$(gridcli -gn $gn_rx -ip)
 echo $gn_tx_ip
 echo $gn_rx_ip
 
-sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;./build.sh' 
-sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;./build.sh'        
+sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;.yes | /build.sh' 
+sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh'        
