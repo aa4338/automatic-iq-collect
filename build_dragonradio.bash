@@ -22,7 +22,7 @@ echo $gn_rx_ip
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh -j5'       
 
 #tmux
-tmux new -d start_rx
+tmux new -d -A -s start_rx
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip"
 tmux attach -t start_rx
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'ifconfig eth1 192.168.10.1;\
