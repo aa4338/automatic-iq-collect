@@ -1,6 +1,8 @@
 # the containers have been created, the radio has been built
 # now set the FREQ based on the RX node name and start the radio based on modulation desired
 
+# assumes you are on tmux, fix this later
+
 # defining grid nodes
 gn_tx=10
 gn_rx=12
@@ -16,17 +18,20 @@ echo $gn_rx_ip
 modulation_tx = bpsk
 modulation_rx = bpsk
 
-# # connect ethernet, set frequency, run radio
-# sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'ifconfig eth1 192.168.10.1;\
-# cd dragonradio;\
-# nohup ./dragonradio python/standalone-radio.py -i 1 -f 1.312e9 --log-iq -m bpsk' 
+# connect ethernet, set frequency, run radio
+run_rx=sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'ifconfig eth1 192.168.10.1;\
+cd dragonradio;./dragonradio python/standalone-radio.py -i 1 -f 1.312e9 --log-iq -m bpsk' 
 
-# # do the same with tx 
-# sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;\
-# cd dragonradio;\
-# nohup ./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk' 
+# do the same with tx 
+run_tx=sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;\
+cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk' 
 
 
 tmux new -s "remote" -d
-tmux send-keys -t "remote" "ls > test.txt" C-m
+tmux send-keys -t "remote" "$run_rx" C-m
+tmux kill-ses -t remote
+
+tmux new -s "remote" -d
+tmux send-keys -t "remote" "$run_rx" C-m
+tmux kill-ses -t remote
 #tmux attach -t "remote" -d
