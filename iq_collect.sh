@@ -3,11 +3,15 @@
 # It will SSH into a Tx and Rx container
 
 if test "$#" -lt 3; then
-    echo "Illegal number of parameters"
+    echo ""
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
+    echo ""
     echo "Available Modulations:"
     echo "==============="
-    echo "bpsk, qam(32/64/128/256), apsk(4/8/16/32/64/128/256)"
+    echo "bpsk"
+    echo "qam(32/64/128/256)"
+    echo "apsk(4/8/16/32/64/128/256)"
+    echo ""
     gridcli -l
     exit 1
 else
