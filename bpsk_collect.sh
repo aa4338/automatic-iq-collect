@@ -2,7 +2,7 @@
 # This script is run at home without being SSHed into container
 # It will SSH into a Tx and Rx container
 
-if test "$#" -ne 1; then
+if test "$#" -lt 3; then
     echo "Illegal number of parameters"
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
     gridcli -l
