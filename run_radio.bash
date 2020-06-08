@@ -32,13 +32,17 @@ echo $gn_rx_ip
 # cd dragonradio;./dragonradio python/standalone-radio.py -i 1 -f 1.312e9 --log-iq -m bpsk'" C-m
 #tmux kill-ses -t remote
 
-tmux new -s "remote_tx" -d
-tmux send-keys -t "remote_tx" "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip"
-tmux send-keys -t "remote_tx" "ls>text.txt" C-m
-tmux attach -t "remote_tx" -d
-# tmux send-keys -t "remote_tx" "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;ls>text.txt;\
-# cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk'" C-m
+# tmux new -s "remote_tx" -d
+# tmux send-keys -t "remote_tx" "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip"
+# tmux send-keys -t "remote_tx" "ls>text.txt" C-m
+# tmux attach -t "remote_tx" -d
+# # tmux send-keys -t "remote_tx" "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;ls>text.txt;\
+# # cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk'" C-m
 
-tmux kill-ses -t remote_rx
-tmux kill-ses -t remote_tx
+# tmux kill-ses -t remote_rx
+# tmux kill-ses -t remote_tx
+
+tmux new-session -d -A -s encode
+tmux send-keys -t encode "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ls>test2.txt'" C-m
+tmux kill-ses -t encode
 
