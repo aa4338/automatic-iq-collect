@@ -7,7 +7,7 @@ if test "$#" -ne 1; then
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
     gridcli -l
 fi
-
+break
 # modulation
 # modulation=bpsk
 modulation=$1
