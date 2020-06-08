@@ -6,10 +6,8 @@ if test "$#" -ne 1; then
     echo "Illegal number of parameters"
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
     gridcli -l
-    echo "$#"
     exit 1
-
-fi
+else
 
 # modulation
 # modulation=bpsk
@@ -69,3 +67,5 @@ sleep 2
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 bpsk_collect.h5
 sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+
+fi
