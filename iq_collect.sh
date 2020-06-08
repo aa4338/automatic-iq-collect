@@ -87,7 +87,6 @@ mv radio.h5 iq_collect_$modulation.h5
 sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 # end message
-echo "Your requested $modulation file has been downloaded."
 echo "......."
 sleep .25
 echo "......"
@@ -101,5 +100,6 @@ sleep .25
 echo ".."
 sleep .25
 echo "."
+echo "Your requested $modulation file has been downloaded."
 
 fi
