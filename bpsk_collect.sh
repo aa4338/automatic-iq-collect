@@ -2,16 +2,22 @@
 # This script is run at home without being SSHed into container
 # It will SSH into a Tx and Rx container
 
+if test "$#" -ne 1; then
+    echo "Illegal number of parameters"
+    echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
+fi
+
 # modulation
-modulation=bpsk
+# modulation=bpsk
+modulation=$1
 
 # defining grid nodes
-gn_tx=15
-gn_rx=17
+# gn_tx=15
+# gn_rx=17
+gn_tx=$2
+gn_rx=$3
 
-echo $1
-echo $2
-echo $3
+
 
 # starting up respective containers
 gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
