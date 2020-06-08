@@ -24,6 +24,7 @@ echo $gn_rx_ip
 #tmux
 tmux new -d -s start_rx
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip"
+tmux send-keys -t start_rx "ls>t123.txt"
 tmux attach -t start_rx
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'ifconfig eth1 192.168.10.1;\
 # cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk' 
