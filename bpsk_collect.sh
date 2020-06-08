@@ -22,11 +22,17 @@ gn_rx=$3
 # starting up respective containers message
 echo "Please wait while your containers are being set up."
 echo "."
+sleep .5
 echo ".."
+sleep .5
 echo "..."
+sleep .5
 echo "...."
+sleep .5
 echo "....."
+sleep .5
 echo "......"
+sleep .5
 echo "......."
 
 # finding the ip of them
