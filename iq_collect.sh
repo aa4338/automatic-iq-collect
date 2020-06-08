@@ -4,7 +4,7 @@
 
 if test "$#" -lt 3; then
     echo ""
-    echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
+    echo "Use: ./iq_collect <modulation> <TX grid node #> <RX grid node #>"
     echo ""
     echo "Available Modulations:"
     echo "==============="
