@@ -25,6 +25,7 @@ echo $gn_rx_ip
 
 # creates and goes to a window on the right
 tmux splitw -h -p 35
+tmux selectp -t 1
 tmux splitw -v -p 50
 tmux selectp -t 1
 
@@ -34,7 +35,7 @@ echo "This is rx"
 # cd dragonradio;./dragonradio python/standalone-radio.py -i 2 -f 1.312e9 --log-iq -m bpsk' 
 
 # start up the rx radio
-tmux selectp -t 1
+tmux selectp -t 2
 echo "This is tx"
 # sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;\
 # cd dragonradio;./dragonradio python/standalone-radio.py -i 1 -f 1.312e9 --log-iq -m bpsk' 
