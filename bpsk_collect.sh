@@ -65,7 +65,7 @@ tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 # Copy over data
 sleep 2
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
-mv radio.h5 bpsk_collect.h5
+mv radio.h5 iq_collect_$modulation.h5
 sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 fi
