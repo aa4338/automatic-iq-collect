@@ -9,6 +9,10 @@ modulation=bpsk
 gn_tx=15
 gn_rx=17
 
+echo $1
+echo $2
+echo $3
+
 # starting up respective containers
 gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
 gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
