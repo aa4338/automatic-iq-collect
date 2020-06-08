@@ -30,14 +30,14 @@ tmux new -d -s start_rx
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t start_rx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_rx "cd dragonradio" C-m
-tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3($gn_rx)e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # TX
 tmux new -d -s start_tx
 tmux send-keys -t start_tx "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip" C-m
 tmux send-keys -t start_tx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_tx "cd dragonradio" C-m
-tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3($gn_rx)e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Iperf RX
 tmux new -d -s iperf_rx
