@@ -41,6 +41,7 @@ tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3
 tmux new -d -s iperf_rx
 tmux send-keys -t iperf_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t iperf_rx "iperf -s -u -i 1" C-m
+sleep 2
 
 # Iperf TX
 tmux new -d -s iperf_tx
