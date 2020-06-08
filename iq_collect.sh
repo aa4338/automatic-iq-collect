@@ -6,6 +6,7 @@ if test "$#" -lt 3; then
     echo ""
     echo "Use: ./iq_collect <modulation> <TX grid node #> <RX grid node #>"
     echo ""
+    sleep 1.5
     echo "Available Modulations:"
     echo "==============="
     echo "bpsk"
