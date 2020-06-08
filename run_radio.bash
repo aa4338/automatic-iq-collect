@@ -43,6 +43,6 @@ echo $gn_rx_ip
 # tmux kill-ses -t remote_tx
 
 tmux new-session -d -A -s encode
-tmux send-keys -t encode "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ls>test2.txt'" C-m
+tmux send-keys -t encode "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'ifconfig eth1 192.168.10.1;ls>text.txt'" C-m
 #tmux kill-ses -t encode
 
