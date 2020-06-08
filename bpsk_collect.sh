@@ -6,8 +6,9 @@ if test "$#" -ne 1; then
     echo "Illegal number of parameters"
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
     gridcli -l
+    break
 fi
-break
+
 # modulation
 # modulation=bpsk
 modulation=$1
