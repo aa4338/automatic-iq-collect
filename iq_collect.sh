@@ -5,6 +5,9 @@
 if test "$#" -lt 3; then
     echo "Illegal number of parameters"
     echo "Use: ./iq_collect <modulation> <grid node TX> <grid node RX>"
+    echo "Available Modulations:"
+    echo "==============="
+    echo "bpsk, qam(32/64/128/256), apsk(4/8/16/32/64/128/256)"
     gridcli -l
     exit 1
 else
@@ -22,17 +25,17 @@ gn_rx=$3
 # starting up respective containers message
 echo "Please wait while your containers are being set up."
 echo "."
-sleep .5
+sleep .25
 echo ".."
-sleep .5
+sleep .25
 echo "..."
-sleep .5
+sleep .25
 echo "...."
-sleep .5
+sleep .25
 echo "....."
-sleep .5
+sleep .25
 echo "......"
-sleep .5
+sleep .25
 echo "......."
 gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
 gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
@@ -82,17 +85,17 @@ sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 # end message
 echo "Your requested $modulation file has been downloaded."
 echo "......."
-sleep .5
+sleep .25
 echo "......"
-sleep .5
+sleep .25
 echo "....."
-sleep .5
+sleep .25
 echo "...."
-sleep .5
+sleep .25
 echo "..."
-sleep .5
+sleep .25
 echo ".."
-sleep .5
+sleep .25
 echo "."
 
 fi
