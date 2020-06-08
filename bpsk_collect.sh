@@ -3,7 +3,7 @@
 # It will SSH into a Tx and Rx container
 
 # modulation
-modulation = bpsk
+modulation=bpsk
 
 # defining grid nodes
 gn_tx=15
