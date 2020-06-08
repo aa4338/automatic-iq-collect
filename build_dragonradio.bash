@@ -21,6 +21,8 @@ echo $gn_rx_ip
 # sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;yes | ./build.sh -j5' 
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh -j5'       
 
+tmux kill-session -a
+
 # RX first
 tmux new -d -s start_rx
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
@@ -43,8 +45,7 @@ tmux send-keys -t iperf_rx "iperf -s -u -i 1" C-m
 # Iperf TX
 tmux new -d -s iperf_tx
 tmux send-keys -t iperf_tx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
-tmux send-keys -t iperf_tx "iperf -s -u -i 1" C-m
-iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10
+tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 
 tmux attach -t iperf_rx
 
