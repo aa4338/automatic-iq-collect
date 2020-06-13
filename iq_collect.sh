@@ -42,13 +42,20 @@ sleep .25
 echo "......"
 sleep .25
 echo "......."
-gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
-gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
+
+# Kraus Grid Automation Channels
+# gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
+# gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
+
+# Dandekar ECET Channels
+gridcli -gn grid$gn_tx --start -i ecet680-lab7-20190805-a11994c9
+gridcli -gn grid$gn_rx --start -i ecet680-lab7-20190805-a11994c9
 
 # finding the ip of them
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
+# Used if a DragonRadio build is necessary
 # sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;yes | ./build.sh -j5' 
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh -j5'       
 
@@ -60,7 +67,12 @@ tmux new -d -s start_rx
 tmux send-keys -t start_rx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t start_rx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_rx "cd dragonradio" C-m
-tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+
+# Used for Kraus Radio
+# tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+
+# Used for Dandekar Radio
+tmux send-keys -t start_rx "./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # TX
 tmux new -d -s start_tx
@@ -68,7 +80,12 @@ tmux new -d -s start_tx
 tmux send-keys -t start_tx "sshpass -p 'kapilrocks' ssh root@$gn_tx_ip" C-m
 tmux send-keys -t start_tx "ifconfig eth1 192.168.10.1" C-m
 tmux send-keys -t start_tx "cd dragonradio" C-m
-tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+
+# Used for Kraus Radio
+# tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+
+# Used for Dandekar Radio
+tmux send-keys -t start_tx "./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Iperf RX
 tmux new -d -s iperf_rx
