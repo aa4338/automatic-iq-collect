@@ -72,7 +72,7 @@ tmux send-keys -t start_rx "cd dragonradio" C-m
 # tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Used for Dandekar Radio
-tmux send-keys -t start_rx "./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_rx "timeout 12 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # TX
 tmux new -d -s start_tx
@@ -85,7 +85,7 @@ tmux send-keys -t start_tx "cd dragonradio" C-m
 # tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Used for Dandekar Radio
-tmux send-keys -t start_tx "./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_tx "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Iperf RX
 tmux new -d -s iperf_rx
@@ -97,12 +97,17 @@ sleep 2
 tmux new -d -s iperf_tx
 tmux send-keys -t iperf_tx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
-echo "Sending/Receiving data packets..."
-sleep 10
+echo "Sending/Receiving data packets:"
+sleep 3
+echo "25% Complete"
+sleep 3
+echo "50% Complete"
+sleep 3
+echo "75% Complete"
+sleep 3
+echo "Transmission/Reception Complete"
 
 # Copy over data
-tmux send-keys -t start_rx "kill -INT 888" C-m
-tmux send-keys -t start_tx "kill -INT 888" C-m
 echo "Copying logs over..."
 sleep 2
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
