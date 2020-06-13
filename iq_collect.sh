@@ -97,8 +97,13 @@ sleep 2
 tmux new -d -s iperf_tx
 tmux send-keys -t iperf_tx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
+echo "Sending/Receiving data packets..."
+sleep 10
 
 # Copy over data
+tmux send-keys -t start_rx "kill -INT 888" C-m
+tmux send-keys -t start_tx "kill -INT 888" C-m
+echo "Copying logs over..."
 sleep 2
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
