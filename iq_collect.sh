@@ -95,6 +95,7 @@ sleep 2
 
 # Iperf TX
 tmux new -d -s iperf_tx
+sleep 1
 tmux send-keys -t iperf_tx "sshpass -p 'kapilrocks' ssh root@$gn_rx_ip" C-m
 tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 echo "Sending/Receiving data packets:"
