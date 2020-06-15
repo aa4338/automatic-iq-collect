@@ -29,27 +29,14 @@ gn_rx=$3
 
 # starting up respective containers message
 echo "Please wait while your containers are being set up."
-echo "."
-sleep .25
-echo ".."
-sleep .25
-echo "..."
-sleep .25
-echo "...."
-sleep .25
-echo "....."
-sleep .25
-echo "......"
-sleep .25
-echo "......."
 
-# Kraus Grid Automation Channels
-# gridcli -gn grid$gn_tx --start -i channel-data-radio-20191003
-# gridcli -gn grid$gn_rx --start -i channel-data-radio-20191003
+image=ecet680-20190725-4296d86b 
+#ecet680-lab7-20190805-a11994c9
+#channel-data-radio-20191003
 
-# Dandekar ECET Channels
-gridcli -gn grid$gn_tx --start -i ecet680-lab7-20190805-a11994c9
-gridcli -gn grid$gn_rx --start -i ecet680-lab7-20190805-a11994c9
+# Start Containers
+gridcli -gn grid$gn_tx --start -i $image
+gridcli -gn grid$gn_rx --start -i $image
 
 # finding the ip of them
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
@@ -116,19 +103,6 @@ mv radio.h5 iq_collect_$modulation.h5
 #sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 # end message
-echo "......."
-sleep .25
-echo "......"
-sleep .25
-echo "....."
-sleep .25
-echo "...."
-sleep .25
-echo "..."
-sleep .25
-echo ".."
-sleep .25
-echo "."
 echo "Your requested $modulation file has been downloaded."
 
 fi
