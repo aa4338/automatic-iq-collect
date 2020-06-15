@@ -113,7 +113,7 @@ echo "Copying logs over..."
 sleep 2
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
-sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+#sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 # end message
 echo "......."
