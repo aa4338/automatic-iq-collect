@@ -65,12 +65,12 @@ tmux new-session \; \
     split-window -h -p 50 \; \
     send-keys 'ls' C-m \; \
     select-pane -t 0 \; \
-    send-keys "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m \; 
-sleep 2
-tmux select-pane -t 0 \; \
-    send-keys 'sudo apt-get update' C-m \; \
-    send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
-    send-keys 'cd dragonradio' C-m \; \
+    send-keys "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip;sudo apt-get update;ifconfig eth1 192.168.10.1;cd dragonradio" C-m \; 
+# sleep 2
+# tmux select-pane -t 0 \; \
+#     send-keys 'sudo apt-get update' C-m \; \
+#     send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
+#     send-keys 'cd dragonradio' C-m \; \
     # Start RX
     #tmux send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m
 
