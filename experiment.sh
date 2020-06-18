@@ -70,18 +70,23 @@ tmux new-session \; \
     send-keys -t 2 'sudo apt-get update' C-m \; \
     send-keys -t 2 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 2 'cd dragonradio' C-m \; \
-    send-keys -t 2 "timeout 12 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m '' \; \
+    send-keys -t 2 "timeout 15 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m '' \; \
     send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 0 'sudo apt-get update' C-m \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
-    send-keys -t 0 "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
+    send-keys -t 0 "timeout 15 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
-
-
+tmux kill-session -a
+# Copy over data
+echo "Copying logs over..."
+sleep 2
+scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
+mv radio.h5 iq_collect_$modulation.h5
+sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
     #select-pane -t 0 \; \
 
