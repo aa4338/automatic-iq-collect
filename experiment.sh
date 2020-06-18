@@ -78,7 +78,6 @@ tmux new-session \; \
     send-keys -t 0 "./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
-
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 3 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
 
