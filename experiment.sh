@@ -81,7 +81,7 @@ tmux new-session \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
     detach \;
-tmux kill-session -a
+
 # Copy over data
 echo "Copying logs over..."
 sleep 2
