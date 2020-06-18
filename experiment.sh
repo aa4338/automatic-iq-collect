@@ -66,7 +66,8 @@ tmux new-session \; \
     send-keys 'ls' C-m \; \
     select-pane -t 0 \; \
     send-keys "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m \; 
-sleep 5
+tmux send-keys 'sleep 5' C-m \; \
+    send-keys 'ls' C-m \;
 # tmux select-pane -t 0 \; \
 #     send-keys 'sudo apt-get update' C-m \; \
 #     send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
