@@ -71,12 +71,12 @@ tmux new-session \; \
     send-keys -t 2 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 2 'cd dragonradio' C-m \; \
     send-keys -t 2 "./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m '' \; \
-    send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
+    send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 0 'sudo apt-get update' C-m \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
     send-keys -t 0 "./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
-    send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
+    send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
 
 
