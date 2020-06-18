@@ -56,7 +56,7 @@ gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 # 1 - Iperf TX
 # 2 - Start RX
 # 3 - Iperf RX
-
+tmux kill-session -a
 tmux new-session \; \
     select-pane -t 0 \; \
     split-window -v -p 50 \; \
@@ -65,10 +65,9 @@ tmux new-session \; \
     split-window -h -p 50 \; \
     send-keys 'ls' C-m \; \
     select-pane -t 0 \; \
-    send-keys "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m \; 
-sleep 3
-tmux send-keys 'sleep 5' C-m \; \
+    send-keys "timeout 5 sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m \; \
     send-keys 'ls' C-m \;
+
 # tmux select-pane -t 0 \; \
 #     send-keys 'sudo apt-get update' C-m \; \
 #     send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
