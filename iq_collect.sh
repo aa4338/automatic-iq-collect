@@ -30,7 +30,7 @@ gn_rx=$3
 # starting up respective containers message
 echo "Please wait while your containers are being set up."
 
-image=ecet680-20190725-4296d86b 
+image=ecet680-lab7-20190805-a11994c9
 #ecet680-lab7-20190805-a11994c9
 #channel-data-radio-20191003
 
@@ -59,7 +59,7 @@ tmux send-keys -t start_rx "cd dragonradio" C-m
 # tmux send-keys -t start_rx "./dragonradio python/standalone-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Used for Dandekar Radio
-tmux send-keys -t start_rx "timeout 12 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_rx "timeout 12 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m
 
 # TX
 tmux new -d -s start_tx
@@ -72,19 +72,19 @@ tmux send-keys -t start_tx "cd dragonradio" C-m
 # tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Used for Dandekar Radio
-tmux send-keys -t start_tx "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 --cycle-tx-gain discontinuous --cycle-tx-gain-period 1 -m $modulation" C-m
+tmux send-keys -t start_tx "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m
 
 # Iperf RX
 tmux new -d -s iperf_rx
 tmux send-keys -t iperf_rx "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m
-tmux send-keys -t iperf_rx "iperf -s -u -i 1" C-m
+tmux send-keys -t iperf_rx "sudo iperf -s -u -i 1" C-m
 sleep 2
 
 # Iperf TX
 tmux new -d -s iperf_tx
 sleep 1
 tmux send-keys -t iperf_tx "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m
-tmux send-keys -t iperf_tx "iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
+tmux send-keys -t iperf_tx "sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 echo "Sending/Receiving data packets:"
 sleep 3
 echo "25% Complete"
