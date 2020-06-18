@@ -76,7 +76,8 @@ tmux new-session \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
     send-keys -t 2 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
-    #send-keys "sleep 5 && ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m '' \; \
+    send-keys -t 1 "./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq" C-m '' \; \
+    send-keys -t 0 "./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
     #select-pane -t 0 \; \
 
     # send-keys 'ls' C-m \; \
