@@ -65,7 +65,7 @@ tmux new-session \; \
     split-window -h -p 50 \; \
     send-keys 'ls' C-m \; \
     select-pane -t 0 \; \
-    send-keys "timeout 5 sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m \; \
+    send-keys "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m 'sleep 3' \; \
     send-keys 'ls' C-m \;
 
 # tmux select-pane -t 0 \; \
