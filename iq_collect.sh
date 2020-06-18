@@ -72,7 +72,7 @@ tmux send-keys -t start_tx "cd dragonradio" C-m
 # tmux send-keys -t start_tx "./dragonradio python/standalone-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
 
 # Used for Dandekar Radio
-tmux send-keys -t start_tx "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation" C-m
+tmux send-keys -t start_tx "timeout 12 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 --cycle-tx-gain discontinuous --cycle-tx-gain-period 1 -m $modulation" C-m
 
 # Iperf RX
 tmux new -d -s iperf_rx
