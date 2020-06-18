@@ -46,7 +46,7 @@ gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 # sshpass -p 'kapilrocks' ssh root@$gn_tx_ip 'cd dragonradio;yes | ./build.sh -j5' 
 # sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio;yes | ./build.sh -j5'       
 
-tmux kill-session -a
+
 
 
 
@@ -65,11 +65,12 @@ tmux new-session \; \
     split-window -h -p 50 \; \
     send-keys 'ls' C-m \;
     # Start RX
-    select-pane -t 0 \; \
-    send-keys 'sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip' C-m \; \
-    send-keys 'sudo apt-get update' C-m \; \
-    send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
-    send-keys 'cd dragonradio' C-m \; \
+    tmux send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m
+    # select-pane -t 0 \; \
+    # send-keys 'sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip' C-m \; \
+    # send-keys 'sudo apt-get update' C-m \; \
+    # send-keys 'ifconfig eth1 192.168.10.1' C-m \; \
+    # send-keys 'cd dragonradio' C-m \; \
     # send-keys 'timeout 12 ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -l logs --log-iq -m $modulation --arq' C-m \; \
     # # Start TX
     # select-pane -t 1 \; \
