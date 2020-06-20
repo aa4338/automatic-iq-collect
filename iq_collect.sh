@@ -84,7 +84,7 @@ end message
 echo "Your requested $modulation file has been downloaded."
 
 read -s -p "Plot? (yes/no) " response
-if response=yes then;
+if $(response)=yes then;
     tmux send-keys -t 2 'cd tools' C-m \; \
     tmux send-keys -t 2 'source env/bin/activate' C-m \; \
     tmux send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
