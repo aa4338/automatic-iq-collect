@@ -38,11 +38,15 @@ gridcli -gn grid$gn_rx --start -i $image
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
+# removing any pre-existing log files
+#sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+
 # Tmux Pane Definitions:
 # 0 - Start TX
 # 1 - Iperf TX
 # 2 - Start RX
 # 3 - Iperf RX
+
 tmux kill-session -a
 tmux new-session \; \
     select-pane -t 0 \; \
@@ -74,7 +78,7 @@ echo "Copying logs over..."
 sleep 10
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
-sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+
 
 end message
 echo "Your requested $modulation file has been downloaded."
