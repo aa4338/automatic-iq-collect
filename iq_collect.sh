@@ -83,12 +83,14 @@ mv radio.h5 iq_collect_$modulation.h5
 end message
 echo "Your requested $modulation file has been downloaded."
 
-read -s -p "Plot? (yes/no) " response
-if $(response)=yes then;
-    tmux send-keys -t 2 'cd tools' C-m \; \
-    tmux send-keys -t 2 'source env/bin/activate' C-m \; \
-    tmux send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
+echo "Plot? [y,n]"
+read input
+if [[ $input == "Y" || $input == "y" ]]; then
+        tmux send-keys -t 2 'cd tools' C-m \; \
+        tmux send-keys -t 2 'source env/bin/activate' C-m \; \
+        tmux send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
 else
+        echo "Unknown input"
 fi
 
 fi
