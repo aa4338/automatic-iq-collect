@@ -73,7 +73,7 @@ tmux new-session \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
     send-keys -t 2 'cd tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
-    send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
+    send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; \
     detach \;
 
 # Copy over data
