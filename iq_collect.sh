@@ -38,9 +38,6 @@ gridcli -gn grid$gn_rx --start -i $image
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
-# removing any pre-existing log files
-sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
-
 # Tmux Pane Definitions:
 # 0 - Start TX
 # 1 - Iperf TX
@@ -85,6 +82,9 @@ mv radio.h5 iq_collect_$modulation.h5
 
 end message
 echo "Your requested $modulation file has been downloaded."
+
+# removing any log files
+sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 # echo "Plot? [y,n]"
 # read input
