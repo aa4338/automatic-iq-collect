@@ -39,7 +39,7 @@ gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
 # removing any pre-existing log files
-#sshpass -p 'kapilrocks' ssh root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
 
 # Tmux Pane Definitions:
 # 0 - Start TX
@@ -71,6 +71,9 @@ tmux new-session \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
+    send-keys -t 2 'cd tools' C-m \; \
+    send-keys -t 2 'source env/bin/activate' C-m \; \
+    send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
     detach \;
 
 # Copy over data
@@ -83,14 +86,14 @@ mv radio.h5 iq_collect_$modulation.h5
 end message
 echo "Your requested $modulation file has been downloaded."
 
-echo "Plot? [y,n]"
-read input
-if [[ $input == "Y" || $input == "y" ]]; then
-        tmux send-keys -t 2 'cd tools' C-m \; \
-        tmux send-keys -t 2 'source env/bin/activate' C-m \; \
-        tmux send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
-else
-        echo "Unknown input"
-fi
+# echo "Plot? [y,n]"
+# read input
+# if [[ $input == "Y" || $input == "y" ]]; then
+#         tmux send-keys -t 2 'cd tools' C-m \; \
+#         tmux send-keys -t 2 'source env/bin/activate' C-m \; \
+#         tmux send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; 
+# else
+#         echo "Unknown input"
+# fi
 
 fi
