@@ -83,8 +83,7 @@ mv radio.h5 iq_collect_$modulation.h5
 end message
 echo "Your requested $modulation file has been downloaded."
 
-# # removing any log files
-# sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
+
 
 # echo "Plot? [y,n]"
 # read input
@@ -97,3 +96,6 @@ echo "Your requested $modulation file has been downloaded."
 # fi
 
 fi
+
+# removing any log files
+sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
