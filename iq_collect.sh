@@ -29,25 +29,21 @@ gn_rx=$3
 desired_traffic_tool=$4
 
 if [ "$desired_traffic_tool" = "mgen" ]; then
-    sleep 1
+    sleep 0.5
     echo You have selected MGEN. 
-    sleep 1
-    echo Select a distribution.
-    echo [e.g. PERIODIC, POISSON]
+    sleep 0.5
+    echo Select a distribution. [e.g. PERIODIC, POISSON]
     read distribution
-    sleep 1
+    sleep 0.5
     echo You have selected $distribution
-    sleep 1
-    echo Define the number of packets you want to send per second.
-    echo [e.g. 5, 10, 20, etc.]
+    sleep 0.5
+    echo Define the number of packets you want to send per second. [e.g. 5, 10, 20, etc.]
     read packetspersecond
-    sleep 1
-    echo Define the byte length of each packet.
-    echo [e.g. 64, 128, 1024, etc.]
+    sleep 0.5
+    echo Define the byte length of each packet. [e.g. 64, 128, 1024, etc.]
     read bytelength
-    sleep 1
-    echo Define the millisecond delay of when to start.
-    echo [e.g. 00001,05000, etc.]
+    sleep 0.5
+    echo Define the millisecond delay of when to start. echo [e.g. 00001,05000, etc.]
     read delay
     sleep 1
 else
