@@ -29,14 +29,32 @@ gn_rx=$3
 desired_traffic_tool=$4
 
 if [ "$desired_traffic_tool" = "mgen" ]; then
-    echo You have selected MGEN. Select one of the following.
-    echo [PERIODIC/POISSON]
-    read varname
+    sleep 1
+    echo You have selected MGEN. 
+    sleep 1
+    echo Select a distribution.
+    echo [e.g. PERIODIC, POISSON]
+    read distribution
+    sleep 1
+    echo You have selected $distribution
+    sleep 1
+    echo Define the number of packets you want to send per second.
+    echo [e.g. 5, 10, 20, etc.]
+    read packetspersecond
+    sleep 1
+    echo Define the byte length of each packet.
+    echo [e.g. 64, 128, 1024, etc.]
+    read bytelength
+    sleep 1
+    echo Define the millisecond delay of when to start.
+    echo [e.g. 00001,05000, etc.]
+    read delay
+    sleep 1
 else
   echo "try again"
 fi
 
-echo You have selected $varname
+echo Your MGEN cmd will be $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength]
 
 # # starting up respective containers message
 # echo "Please wait while your containers are being set up."
