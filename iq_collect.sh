@@ -46,12 +46,11 @@ if [ "$desired_traffic_tool" = "mgen" ]; then
     echo Define the millisecond delay of when to start. echo [e.g. 00001,05000, etc.]
     read delay
     sleep 1
-    #echo $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength] > 
-    mgen_cmd=`echo $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength] | bc`
+    echo Your MGEN cmd will be $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength]
 else
   echo You have selected IPERF.
 fi
-echo Your MGEN cmd will be $mgen_cmd
+
 
 # # starting up respective containers message
 # echo "Please wait while your containers are being set up."
