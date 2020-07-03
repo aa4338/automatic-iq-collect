@@ -95,7 +95,7 @@ tmux new-session \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
     send-keys -t 0 "timeout 15 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
-    send-keys -t 3 'sleep 3 && mgen port 5000-5006' C-m \; \
+    send-keys -t 3 'sleep 3 && mgen port 5000-6' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 "echo output send_log.drc > transmit.mgn && echo txlog >> transmit.mgn && echo $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength] >> transmit.mgn" C-m '' \; \
     send-keys -t 1 'sleep 5 && timeout 10 mgen input transmit.mgn' C-m \; \
