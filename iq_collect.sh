@@ -43,13 +43,10 @@ if [ "$desired_traffic_tool" = "mgen" ]; then
     echo Define the byte length of each packet. [e.g. 64, 128, 1024, etc.]
     read bytelength
     sleep 0.25
-    echo Define the millisecond delay of when to start. echo [e.g. 00001,05000, etc.]
+    echo Define a delay (seconds) of when to start. echo [e.g. 0, 2, 5, etc.]
     read delay
     sleep 0.5
     echo Your MGEN cmd will be $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength]
-    echo output send_log.drc > transmit.mgn
-    echo txlog >> transmit.mgn
-    echo $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength] >> transmit.mgn
 else
   echo You have selected IPERF.
 fi
