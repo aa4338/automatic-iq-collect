@@ -108,7 +108,7 @@ echo You have selected $varname
 # #         echo "Unknown input"
 # # fi
 
-# fi
+fi
 
 # # removing any log files
 # sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-001/;rm *'
