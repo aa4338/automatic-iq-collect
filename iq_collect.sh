@@ -29,24 +29,27 @@ gn_rx=$3
 desired_traffic_tool=$4
 
 if [ "$desired_traffic_tool" = "mgen" ]; then
-    sleep 0.5
+    sleep 0.25
     echo You have selected MGEN. 
-    sleep 0.5
+    sleep 0.25
     echo Select a distribution. [e.g. PERIODIC, POISSON]
     read distribution
-    sleep 0.5
+    sleep 0.25
     echo You have selected $distribution
-    sleep 0.5
+    sleep 0.25
     echo Define the number of packets you want to send per second. [e.g. 5, 10, 20, etc.]
     read packetspersecond
-    sleep 0.5
+    sleep 0.25
     echo Define the byte length of each packet. [e.g. 64, 128, 1024, etc.]
     read bytelength
-    sleep 0.5
+    sleep 0.25
     echo Define the millisecond delay of when to start. echo [e.g. 00001,05000, etc.]
     read delay
-    sleep 1
+    sleep 0.5
     echo Your MGEN cmd will be $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength]
+    echo output send_log.drc > transmit.mgn
+    echo txlog >> transmit.mgn
+    echo $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength] >> transmit.mgn
 else
   echo You have selected IPERF.
 fi
@@ -93,6 +96,7 @@ fi
 #     send-keys -t 0 "timeout 15 ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation --arq" C-m '' \; \
 #     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
 #     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
+#     send-keys -t 3 "sleep 3 && $delay ON 1 UDP SRC 4001 DST 10.10.10.1/5001 $distribution [$packetspersecond $bytelength]" C-m '' \; \
 #     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
 #     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10' C-m \; \
 #     send-keys -t 2 'cd tools' C-m \; \
