@@ -28,7 +28,7 @@ gn_rx=$3
 # iperf or mgen
 desired_traffic_tool=$4
 
-if [ "$desired_traffic_tool" = "country" ]; then
+if [ "$desired_traffic_tool" = "mgen" ]; then
     echo You have selected MGEN. Select one of the following.
     echo [PERIODIC/POISSON]
     read varname
