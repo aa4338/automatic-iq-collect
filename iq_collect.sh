@@ -108,7 +108,7 @@ scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
 
 
-end message
+#end message
 echo "Your requested $modulation file has been downloaded."
 
 
