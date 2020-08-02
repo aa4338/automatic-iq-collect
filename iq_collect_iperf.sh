@@ -110,7 +110,7 @@ sleep 15
 # mv radio.h5 iq_collect_$modulation.h5
 
 scp root@$gn_rx_ip:~/dragonradio/tools/modulated.mat .
-mv modulated_ota.mat ota_$modulation.h5
+mv modulated.mat ota_$modulation.h5
 
 
 #end message
@@ -132,3 +132,4 @@ fi
 
 # removing any log files
 sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-002/;rm *'
+sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/tools/;rm *.mat'
