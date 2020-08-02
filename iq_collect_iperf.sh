@@ -103,7 +103,7 @@ tmux new-session \; \
 
 # Copy over data
 echo "Copying logs over..."
-sleep 15
+sleep 20
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
 
