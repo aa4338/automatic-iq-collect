@@ -91,7 +91,7 @@ tmux new-session \; \
     send-keys -t 0 'sudo apt-get update' C-m \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
-    send-keys -t 0 "timeout 10 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
+    send-keys -t 0 "timeout 30 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
