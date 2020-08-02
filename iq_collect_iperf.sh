@@ -83,12 +83,10 @@ tmux new-session \; \
     select-pane -t 0 \; \
     send-keys -t 2 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 2 'ls' C-m \; \
-    send-keys -t 2 'sudo apt-get update' C-m \; \
     send-keys -t 2 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 2 'cd dragonradio' C-m \; \
     send-keys -t 2 "timeout 20 sudo ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation -l logs --log-iq --log-snapshot --snapshot-duration 5 --snapshot-period 5 -m $modulation" C-m '' \; \
     send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
-    send-keys -t 0 'sudo apt-get update' C-m \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
     send-keys -t 0 "timeout 30 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
