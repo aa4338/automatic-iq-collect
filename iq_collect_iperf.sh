@@ -94,7 +94,7 @@ tmux new-session \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.2 -u -i 1 -b 200k -t 10' C-m \; \
-    send-keys -t 2 'cd tools' C-m \; \
+    send-keys -t 2 'cd ../tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
     send-keys -t 2 './drgui.py logs/node-001/radio.h5 --snapshot 1' C-m \; \
     send-keys -t 2 'deactivate' C-m \; \
