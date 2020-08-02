@@ -96,14 +96,14 @@ tmux new-session \; \
     send-keys -t 1 'sleep 5 && sudo iperf -c 10.10.10.2 -u -i 1 -b 200k -t 10' C-m \; \
     send-keys -t 2 'cd tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
-    send-keys -t 2 './drgui.py logs/node-002/radio.h5 --snapshot 1' C-m \; \
+    send-keys -t 2 './drgui.py ../logs/node-002/radio.h5 --snapshot 1' C-m \; \
     send-keys -t 2 'deactivate' C-m \; \
     send-keys -t 2 'cd ..' C-m \; \
     detach \;
 
 # Copy over data
 echo "Copying logs over..."
-sleep 10
+sleep 15
 scp root@$gn_rx_ip:~/dragonradio/logs/node-001/radio.h5 .
 mv radio.h5 iq_collect_$modulation.h5
 
