@@ -99,7 +99,7 @@ tmux new-session \; \
     send-keys -t 2 'cd tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
     send-keys -t 2 './drgui.py ../logs/node-001/radio.h5 --rx 1' C-m \; \
-    send-keys -t 2 'deativate' C-m \; \
+    send-keys -t 2 'deactivate' C-m \; \
     send-keys -t 2 'cd ..' C-m \; \
     detach \;
 
