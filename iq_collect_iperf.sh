@@ -65,6 +65,8 @@ gridcli -gn grid$gn_rx --start -i $image
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
+scp drgui.py root@$gn_rx_ip:~/dragonradio/tools
+
 # Tmux Pane Definitions:
 # 0 - Start TX
 # 1 - Iperf TX
