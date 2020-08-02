@@ -86,12 +86,12 @@ tmux new-session \; \
     send-keys -t 2 'sudo apt-get update' C-m \; \
     send-keys -t 2 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 2 'cd dragonradio' C-m \; \
-    send-keys -t 2 "timeout 15 sudo ./dragonradio python/ecet680-radio.py --auto-soft-tx-gain 20 -v -G 20 -R 2 -d -b 1e6 -n 2 -i 1 --rx-antenna TX/RX -f 1.3${gn_rx}e9 -l logs --log-iq --log-snapshot --snapshot-duration 5 --snapshot-period 5 -m $modulation --arq --lifo --verbose-packet-trace --slot-size 0.05 --guard-size 0.005" C-m '' \; \
+    send-keys -t 2 "timeout 15 sudo ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation -l logs --log-iq --log-snapshot --snapshot-duration 5 --snapshot-period 5 -m $modulation" C-m '' \; \
     send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 0 'sudo apt-get update' C-m \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
-    send-keys -t 0 "timeout 15 sudo ./dragonradio python/ecet680-radio.py --auto-soft-tx-gain 20 -v -G 20 -R 2 -d -b 1e6 -n 2 -i 2 --rx-antenna TX/RX -f 1.3${gn_rx}e9 -m $modulation --arq --lifo --verbose-packet-trace --slot-size 0.05 --guard-size 0.005" C-m '' \; \
+    send-keys -t 0 "timeout 15 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 3 'sleep 3 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
