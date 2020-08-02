@@ -106,8 +106,11 @@ tmux new-session \; \
 # Copy over data
 echo "Copying logs over..."
 sleep 15
-scp root@$gn_rx_ip:~/dragonradio/logs/node-002/radio.h5 .
-mv radio.h5 iq_collect_$modulation.h5
+# scp root@$gn_rx_ip:~/dragonradio/logs/node-002/radio.h5 .
+# mv radio.h5 iq_collect_$modulation.h5
+
+scp root@$gn_rx_ip:~/dragonradio/tools/modulated_ota.mat .
+mv modulated_ota.mat ota_$modulation.h5
 
 
 #end message
@@ -128,4 +131,4 @@ echo "Your requested $modulation file has been downloaded."
 fi
 
 # removing any log files
-#sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-002/;rm *'
+sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-002/;rm *'
