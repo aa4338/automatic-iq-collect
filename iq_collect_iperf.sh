@@ -65,7 +65,7 @@ gridcli -gn grid$gn_rx --start -i $image
 gn_tx_ip=$(gridcli -gn grid$gn_tx -ip)
 gn_rx_ip=$(gridcli -gn grid$gn_rx -ip)
 
-scp drgui.py root@$gn_rx_ip:~/dragonradio/tools
+sshpass -p 'kapilrocks' scp drgui.py root@$gn_rx_ip:~/dragonradio/tools
 
 # Tmux Pane Definitions:
 # 0 - Start TX
@@ -87,18 +87,18 @@ tmux new-session \; \
     send-keys -t 2 'ls' C-m \; \
     send-keys -t 2 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 2 'cd dragonradio' C-m \; \
-    send-keys -t 2 "timeout 8 sudo ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation -l logs --log-iq --log-snapshot --snapshot-duration 5 --snapshot-period 5 -m $modulation" C-m '' \; \
+    send-keys -t 2 "timeout 14 sudo ./dragonradio python/ecet680-radio.py -i 2 -f 1.3${gn_rx}e9 -m $modulation -l logs --log-iq --log-snapshot --snapshot-duration 5 --snapshot-period 5 -m $modulation" C-m '' \; \
     send-keys -t 0 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 0 'ifconfig eth1 192.168.10.1' C-m \; \
     send-keys -t 0 'cd dragonradio' C-m \; \
-    send-keys -t 0 "timeout 10 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
+    send-keys -t 0 "timeout 12 sudo ./dragonradio python/ecet680-radio.py -i 1 -f 1.3${gn_rx}e9 -m $modulation" C-m '' \; \
     send-keys -t 3 "sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip" C-m '' \; \
     send-keys -t 3 'sleep 1 && sudo iperf -s -u -i 1' C-m \; \
     send-keys -t 1 "sshpass -p 'kapilrocks' ssh -X root@$gn_tx_ip" C-m '' \; \
     send-keys -t 1 'sleep 1 && sudo iperf -c 10.10.10.2 -u -i 1 -b 200k -t 10' C-m \; \
     send-keys -t 2 'cd tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
-    send-keys -t 2 'sleep 1' C-m \; \
+    send-keys -t 2 'sleep 10' C-m \; \
     send-keys -t 2 './drgui.py ../logs/node-002/radio.h5 --snapshot 2' C-m \; \
     send-keys -t 2 'deactivate' C-m \; \
     send-keys -t 2 'cd ..' C-m \; \
@@ -110,7 +110,7 @@ sleep 20
 # scp root@$gn_rx_ip:~/dragonradio/logs/node-002/radio.h5 .
 # mv radio.h5 iq_collect_$modulation.h5
 
-scp root@$gn_rx_ip:~/dragonradio/tools/modulated.mat .
+sshpass -p 'kapilrocks' scp root@$gn_rx_ip:~/dragonradio/tools/modulated.mat .
 mv modulated.mat ota_$modulation.mat
 
 
