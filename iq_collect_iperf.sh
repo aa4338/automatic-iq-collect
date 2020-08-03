@@ -110,7 +110,7 @@ sleep 15
 # mv radio.h5 iq_collect_$modulation.h5
 
 scp root@$gn_rx_ip:~/dragonradio/tools/modulated.mat .
-mv modulated.mat ota_$modulation.h5
+mv modulated.mat ota_$modulation.mat
 
 
 #end message
