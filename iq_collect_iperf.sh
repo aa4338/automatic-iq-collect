@@ -130,6 +130,7 @@ echo "Your requested $modulation file has been downloaded."
 
 fi
 
+sleep 5
 # removing any log files
 sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/logs/node-002/;rm *'
 sshpass -p 'kapilrocks' ssh -X root@$gn_rx_ip 'cd dragonradio/tools/;rm *.mat'
