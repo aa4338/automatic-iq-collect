@@ -74,6 +74,8 @@ sshpass -p 'kapilrocks' scp drgui.py root@$gn_rx_ip:~/dragonradio/tools
 # 3 - Iperf RX
 # tmux send-keys -t iperf_tx "sudo iperf -c 10.10.10.1 -u -i 1 -b 200k -t 10" C-m
 #tmux send-keys -t iperf_rx "sudo iperf -s -u -i 1" C-m
+
+echo "Copying logs over..."
 tmux kill-session -a
 tmux new-session \; \
     select-pane -t 0 \; \
@@ -98,15 +100,15 @@ tmux new-session \; \
     send-keys -t 1 'sleep 1 && sudo iperf -c 10.10.10.2 -u -i 1 -b 200k -t 10' C-m \; \
     send-keys -t 2 'cd tools' C-m \; \
     send-keys -t 2 'source env/bin/activate' C-m \; \
-    send-keys -t 2 'sleep 20' C-m \; \
+    send-keys -t 2 'sleep 15' C-m \; \
     send-keys -t 2 './drgui.py ../logs/node-002/radio.h5 --snapshot 2' C-m \; \
     send-keys -t 2 'deactivate' C-m \; \
     send-keys -t 2 'cd ..' C-m \; \
     detach \;
 
 # Copy over data
-echo "Copying logs over..."
-sleep 20
+
+sleep 25
 # scp root@$gn_rx_ip:~/dragonradio/logs/node-002/radio.h5 .
 # mv radio.h5 iq_collect_$modulation.h5
 
